@@ -1,0 +1,36 @@
+<aura:component controller="TaskSwitchController">
+    <aura:attribute name="TasksWrapList" type="AuraInterface" /> 
+    
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    
+    <table class="slds-table slds-table_bordered slds-table_resizable-cols slds-table_fixed-layout" role="grid">
+        <thead>
+            <th class="slds-line-height_reset">
+                <span class="slds-truncate" title="Name">Action</span>
+            </th>
+            <th class="slds-line-height_reset">
+                <span class="slds-truncate" title="Name">Subject</span>
+            </th>
+            <th class="slds-line-height_reset">
+                <span class="slds-truncate" title="Name">Status</span>
+            </th>
+        </thead>
+        <tbody>        
+            <aura:iteration items="{!v.TasksWrapList}" var="TaskItem">
+                <tr>
+                    <th>
+                        <label class="slds-checkbox">
+                            <lightning:input name="{!TaskItem.vIndex}" value="{!TaskItem}" type="checkbox" onchange="{!c.handleInputCheckboxChange}"/>
+                        </label>
+                    </th>
+                    <th scope="row">
+                        <div class="slds-truncate" >{!TaskItem.vTask.Subject}</div>
+                    </th>
+                    <th scope="row">
+                        <div class="slds-truncate" >{!TaskItem.vTask.Status}</div>
+                    </th>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+</aura:component>
